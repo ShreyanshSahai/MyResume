@@ -34,9 +34,9 @@ export class Skills {
     {
       name: 'Backend Development',
       skills: [
-        { name: '.Net Core', level: 85, icon: 'bi bi-server' },
+        { name: '.Net Core', level: 85, icon: 'bi bi-file-earmark' },
         { name: 'SQL', level: 85, icon: 'bi bi-database' },
-        { name: 'C#', level: 85, icon: 'bi bi-filetype-py' },
+        { name: 'C#', level: 85, icon: 'bi bi-filetype-cs' },
         { name: 'Java', level: 55, icon: 'bi bi-cup-hot' },
       ],
     },
