@@ -1,1 +1,33 @@
-<p>education works!</p>
+<section id="education" class="education py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center mb-5">
+        <h2 class="section-title">Education</h2>
+        <div class="section-divider"></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-4 mb-4" *ngFor="let edu of educationList">
+        <div class="education-card">
+          <div class="education-header">
+            <div class="education-logo">
+              <img src="/images/{{ getImagePath(edu) }}" alt="{{ edu.institution }} logo" 
+                   onerror="this.src='/assets/images/placeholder.png'; this.onerror=null;">
+            </div>
+            <h3 class="degree-title">{{ edu.degree }}</h3>
+            <p class="major" *ngIf="edu.major">{{ edu.major }}</p>
+          </div>
+          <div class="education-body">
+            <p class="institution">{{ edu.institution }}</p>
+            <p class="location" *ngIf="edu.location">{{ edu.location }}</p>
+            <div class="education-score">
+              <span class="score-label">{{ edu.scoreLabel }}: </span>
+              <span class="score-value">{{ edu.score }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
