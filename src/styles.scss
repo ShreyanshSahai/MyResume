@@ -5,20 +5,21 @@
 :root {
   /* Light Theme Variables */
   --primary-color: #0d6efd;
+  --primary-color-rgb: 13, 110, 253;
   --secondary-color: #6610f2;
   --accent-color: #2ecc71;
   --text-color: #2c3e50;
   --text-light: #7f8c8d;
-  --bg-color: #f8f9fa;
+  --bg-color: white;
   --bg-card: rgba(255, 255, 255, 0.7);
   --bg-gradient: linear-gradient(135deg, #0d6efd, #6610f2);
   --shadow-color: rgba(0, 0, 0, 0.1);
-  --border-color: rgba(255, 255, 255, 0.2);
+  --border-color: rgba(13, 110, 253, 0.2);
   --glass-highlight: rgba(255, 255, 255, 0.8);
   --glass-shadow: rgba(0, 0, 0, 0.05);
   --navbar-bg: rgba(255, 255, 255, 0.8);
   --navbar-text: #2c3e50;
-  --card-bg: rgba(255, 255, 255, 0.7);
+  --card-bg: rgba(240, 242, 245, 0.9);
   --btn-primary-bg: var(--primary-color);
   --btn-primary-text: white;
   --btn-outline-bg: transparent;
@@ -38,6 +39,7 @@
 [data-theme="dark"] {
   /* Dark Theme Variables */
   --primary-color: #4d94ff;
+  --primary-color-rgb: 77, 148, 255;
   --secondary-color: #9d50ff;
   --accent-color: #50d890;
   --text-color: #e0e0e0;
@@ -46,12 +48,12 @@
   --bg-card: rgba(30, 30, 30, 0.7);
   --bg-gradient: linear-gradient(135deg, #1a1a2e, #16213e);
   --shadow-color: rgba(0, 0, 0, 0.3);
-  --border-color: rgba(255, 255, 255, 0.1);
+  --border-color: rgba(77, 148, 255, 0.3);
   --glass-highlight: rgba(255, 255, 255, 0.1);
   --glass-shadow: rgba(0, 0, 0, 0.2);
   --navbar-bg: rgba(18, 18, 18, 0.8);
   --navbar-text: #e0e0e0;
-  --card-bg: rgba(30, 30, 30, 0.7);
+  --card-bg: rgba(40, 44, 52, 0.9);
   --btn-primary-bg: var(--primary-color);
   --btn-primary-text: #121212;
   --btn-outline-bg: transparent;
@@ -73,6 +75,28 @@
   border-radius: 16px;
   padding: 20px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 8px 20px var(--shadow-color);
+  position: relative;
+  
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    background: url('data:image/svg+xml,<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="20" fill="none"/><path d="M0 20L20 0H10L0 10M20 20V10L10 20" fill="rgba(0,0,0,0.08)"/></svg>');
+    opacity: 1;
+    z-index: 0;
+    pointer-events: none;
+  }
+  
+  [data-theme="dark"] &::before {
+    background: url('data:image/svg+xml,<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="20" fill="none"/><path d="M0 20L20 0H10L0 10M20 20V10L10 20" fill="rgba(255,255,255,0.05)"/></svg>');
+    opacity: 0.2;
+  }
 
   &:hover {
     transform: translateY(-5px);
@@ -128,6 +152,25 @@ body {
   color: var(--text-color);
   transition: background-color 0.3s ease, color 0.3s ease;
   overflow-x: hidden;
+  position: relative;
+  
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="20" fill="none"/><path d="M0 20L20 0H10L0 10M20 20V10L10 20" fill="rgba(0,0,0,0.03)"/></svg>');
+    opacity: 0.8;
+    z-index: -1;
+    pointer-events: none;
+  }
+  
+  [data-theme="dark"] &::before {
+    background: url('data:image/svg+xml,<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="20" fill="none"/><path d="M0 20L20 0H10L0 10M20 20V10L10 20" fill="rgba(255,255,255,0.05)"/></svg>');
+    opacity: 0.1;
+  }
 }
 
 .light-theme {

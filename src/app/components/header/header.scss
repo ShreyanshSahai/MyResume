@@ -1,3 +1,58 @@
+// Typing effect styles
+.typing-container {
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.name-text {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+.title-text {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  margin-top: 5px;
+  letter-spacing: 0.5px;
+}
+
+// Cursor styling
+.typed-cursor {
+  opacity: 1;
+  color: white;
+  font-size: 2rem;
+  animation: typedjsBlink 0.7s infinite;
+  -webkit-animation: typedjsBlink 0.7s infinite;
+  margin-left: 5px;
+}
+
+@keyframes typedjsBlink {
+  50% { opacity: 0.0; }
+}
+
+@-webkit-keyframes typedjsBlink {
+  0% { opacity: 1; }
+  50% { opacity: 0.0; }
+  100% { opacity: 1; }
+}
+
+.typed-fade-out {
+  opacity: 0;
+  transition: opacity .25s;
+  -webkit-animation: 0;
+  animation: 0;
+}
+
 #header {
   background: var(--bg-gradient);
   padding: 120px 0 80px;
@@ -6,7 +61,8 @@
   min-height: 100vh;
   display: flex;
   align-items: center;
-  color: var(--text-color); /* Add this line to use theme text color */
+  color: var(--text-color); 
+  font-family: 'Inter', sans-serif;
 
   /* In dark theme, we need to ensure text is visible against the gradient */
   [data-theme="dark"] & {
@@ -52,22 +108,6 @@
     animation: fadeInDown 1s ease;
     position: relative;
     display: inline-block;
-
-    &::after {
-      content: "";
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100px;
-      height: 3px;
-      background: linear-gradient(
-        to right,
-        var(--primary-color),
-        var(--secondary-color)
-      );
-      border-radius: 3px;
-    }
   }
 
   .lead {
