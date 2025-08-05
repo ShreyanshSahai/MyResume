@@ -1,5 +1,7 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ThemeService, ThemeMode } from '../services/theme.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -8,7 +10,30 @@ import { CommonModule } from '@angular/common';
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss',
 })
-export class Navbar {
+export class Navbar implements OnInit, OnDestroy {
+  isDarkTheme = false;
+  private themeSubscription: Subscription | null = null;
+
+  constructor(private themeService: ThemeService) {}
+
+  ngOnInit() {
+    this.themeSubscription = this.themeService.theme$.subscribe(
+      (theme: ThemeMode) => {
+        this.isDarkTheme = theme === 'dark';
+      }
+    );
+  }
+
+  ngOnDestroy() {
+    if (this.themeSubscription) {
+      this.themeSubscription.unsubscribe();
+    }
+  }
+
+  toggleTheme() {
+    this.themeService.toggleTheme();
+  }
+
   @HostListener('window:scroll', [])
   onWindowScroll() {
     const navbar = document.querySelector('.navbar') as HTMLElement;
