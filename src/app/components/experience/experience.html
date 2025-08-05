@@ -14,7 +14,7 @@
     <div class="experience-card" *ngFor="let exp of experiences" #experienceCard>
       <div class="card-content">
         <div class="company-logo">
-          <img [src]="exp.logoPath" [alt]="exp.company + ' logo'">
+          <img [src]="getLogoPath(exp)" [alt]="exp.company + ' logo'">
         </div>
         <div class="experience-content">
           <h3 class="company-name">{{ exp.company }}</h3>
