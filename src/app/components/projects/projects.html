@@ -1,0 +1,61 @@
+<section id="projects" class="projects py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center mb-5">
+        <h2 class="section-title">My Projects</h2>
+        <div class="section-divider"></div>
+        <p class="section-subtitle">
+          Here are some of my recent web development projects
+        </p>
+      </div>
+    </div>
+
+    <div
+      class="row project-item"
+      *ngFor="let project of projects; let i = index"
+      [ngClass]="{ 'flex-row-reverse': i % 2 !== 0 }"
+      #projectItem
+    >
+      <div class="col-lg-6 mb-4">
+        <div class="project-image-container">
+          <div class="image-slider">
+            <img
+              [src]="
+                getImagePath(project.folderName, currentImageIndex[project.id])
+              "
+              [alt]="project.name"
+              class="img-fluid project-image"
+            />
+
+            <div class="slider-indicators" *ngIf="project.imageCount > 1">
+              <span
+                *ngFor="
+                  let dot of [].constructor(project.imageCount);
+                  let j = index
+                "
+                [ngClass]="{ active: currentImageIndex[project.id] === j }"
+                class="indicator-dot"
+              >
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="project-content">
+          <h3 class="project-title">{{ project.name }}</h3>
+          <p class="project-description">{{ project.description }}</p>
+          <div class="project-links">
+            <a
+              [href]="project.websiteLink"
+              target="_blank"
+              class="btn btn-primary"
+            >
+              <i class="bi bi-globe me-2"></i>Visit Website
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
