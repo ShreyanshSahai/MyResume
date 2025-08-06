@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
 })
 export class Navbar implements OnInit, OnDestroy {
   isDarkTheme = false;
+  isMenuOpen = false;
   private themeSubscription: Subscription | null = null;
 
   constructor(private themeService: ThemeService) {}
@@ -32,6 +33,48 @@ export class Navbar implements OnInit, OnDestroy {
 
   toggleTheme() {
     this.themeService.toggleTheme();
+  }
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  closeMenu() {
+    if (this.isMenuOpen) {
+      this.isMenuOpen = false;
+      // Find the navbar collapse element and remove the show class
+      const navbarCollapse = document.getElementById('navbarNav');
+      if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+        // Use Bootstrap's collapse API to hide the menu
+        // @ts-ignore - Using Bootstrap's jQuery API
+        window['bootstrap'].Collapse.getInstance(navbarCollapse)?.hide();
+      }
+    }
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent) {
+    // Get references to the navbar elements
+    const navbarCollapse = document.getElementById('navbarNav');
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    
+    // Check if the menu is open and the click is outside the menu and toggler
+    if (navbarCollapse && navbarToggler && 
+        navbarCollapse.classList.contains('show') && 
+        !navbarCollapse.contains(event.target as Node) && 
+        !navbarToggler.contains(event.target as Node)) {
+      
+      // Prevent the default action if the click target is a link or button
+      const target = event.target as HTMLElement;
+      const clickableElement = target.closest('a, button, input[type="submit"]');
+      
+      if (clickableElement) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      
+      this.closeMenu();
+    }
   }
 
   @HostListener('window:scroll', [])
