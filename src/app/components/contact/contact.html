@@ -1,1 +1,165 @@
-<p>contact works!</p>
+<section id="contact" class="contact py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center mb-5">
+        <h2 class="section-title">Contact Me</h2>
+        <div class="section-divider"></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-5 mb-4 mb-lg-0">
+        <div class="contact-info glass-card">
+          <h3 class="mb-4">Get In Touch</h3>
+          <p class="lead mb-4">
+            Feel free to reach out to me for any inquiries, collaborations, or
+            just to say hello. I'm always open to discussing new projects and
+            opportunities.
+          </p>
+          <div class="contact-item mb-3">
+            <i class="bi bi-geo-alt-fill"></i>
+            <div>
+              <h4>Location</h4>
+              <p>Lucknow, India</p>
+            </div>
+          </div>
+          <div class="contact-item mb-3">
+            <i class="bi bi-envelope-fill"></i>
+            <div>
+              <h4>Email</h4>
+              <p>
+                <a href="mailto:sahaishreyansh@gmail.com"
+                  >sahaishreyansh&#64;gmail.com</a
+                >
+              </p>
+            </div>
+          </div>
+          <div class="contact-item mb-3">
+            <i class="bi bi-phone-fill"></i>
+            <div>
+              <h4>Phone</h4>
+              <p><a href="tel:+919044975827">+91 9044975827</a></p>
+            </div>
+          </div>
+          <div class="social-links mt-4">
+            <a
+              href="https://www.linkedin.com/in/shreyansh-sahai/"
+              class="social-icon"
+              aria-label="LinkedIn"
+            >
+              <i class="bi bi-linkedin"></i>
+            </a>
+            <a
+              href="https://github.com/ShreyanshSahai"
+              class="social-icon"
+              aria-label="GitHub"
+            >
+              <i class="bi bi-github"></i>
+            </a>
+            <a href="https://leetcode.com/u/backspaced/" class="social-icon" aria-label="LeetCode">
+              <i class="bi bi-code-slash"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-7">
+        <div class="contact-form glass-card">
+          <h3 class="mb-4">Send Me a Message</h3>
+          <form (ngSubmit)="submitForm()" #contactForm="ngForm">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <div class="form-group">
+                  <label for="name">Your Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    class="form-control"
+                    placeholder="Enter your name"
+                    [(ngModel)]="formData.name"
+                    required
+                    #nameInput="ngModel"
+                  />
+                  <div *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)" class="text-danger mt-1">
+                    <small *ngIf="nameInput.errors?.['required']">Name is required</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <div class="form-group">
+                  <label for="email">Your Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    class="form-control"
+                    placeholder="Enter your email"
+                    [(ngModel)]="formData.email"
+                    required
+                    email
+                    #emailInput="ngModel"
+                  />
+                  <div *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)" class="text-danger mt-1">
+                    <small *ngIf="emailInput.errors?.['required']">Email is required</small>
+                    <small *ngIf="emailInput.errors?.['email']">Please enter a valid email</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <label for="subject">Subject</label>
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                class="form-control"
+                placeholder="Enter subject"
+                [(ngModel)]="formData.subject"
+                required
+                #subjectInput="ngModel"
+              />
+              <div *ngIf="subjectInput.invalid && (subjectInput.dirty || subjectInput.touched)" class="text-danger mt-1">
+                <small *ngIf="subjectInput.errors?.['required']">Subject is required</small>
+              </div>
+            </div>
+            <div class="form-group mb-4">
+              <label for="message">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                class="form-control"
+                rows="5"
+                placeholder="Enter your message"
+                [(ngModel)]="formData.message"
+                required
+                #messageInput="ngModel"
+              ></textarea>
+              <div *ngIf="messageInput.invalid && (messageInput.dirty || messageInput.touched)" class="text-danger mt-1">
+                <small *ngIf="messageInput.errors?.['required']">Message is required</small>
+              </div>
+            </div>
+            <button 
+              type="submit" 
+              class="btn btn-primary send-btn" 
+              [disabled]="contactForm.invalid || isSubmitting"
+            >
+              <i class="bi" [ngClass]="isSubmitting ? 'bi-hourglass-split' : 'bi-send-fill'"></i>
+              <span class="ms-2">{{ isSubmitting ? 'Sending...' : 'Send Message' }}</span>
+            </button>
+            
+            <!-- Success message -->
+            <div *ngIf="isSubmitted" class="alert alert-success mt-3">
+              <i class="bi bi-check-circle me-2"></i> Your message has been sent successfully! I'll get back to you soon.
+            </div>
+            
+            <!-- Error message -->
+            <div *ngIf="hasError" class="alert alert-danger mt-3">
+              <i class="bi bi-exclamation-triangle me-2"></i> {{ errorMessage }}
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
