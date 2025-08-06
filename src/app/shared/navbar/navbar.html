@@ -9,34 +9,32 @@
       aria-controls="navbarNav"
       aria-expanded="false"
       aria-label="Toggle navigation"
+      (click)="toggleMenu()"
     >
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link" href="#header">Home</a>
+          <a class="nav-link" href="#header" (click)="closeMenu()">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#about">About</a>
+          <a class="nav-link" href="#about" (click)="closeMenu()">About</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#skills">Skills</a>
+          <a class="nav-link" href="#skills" (click)="closeMenu()">Skills</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#projects">Projects</a>
+          <a class="nav-link" href="#projects" (click)="closeMenu()">Projects</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#experience">Experience</a>
+          <a class="nav-link" href="#experience" (click)="closeMenu()">Experience</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#education">Education</a>
+          <a class="nav-link" href="#education" (click)="closeMenu()">Education</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#achievements">Achievements</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#contact">Contact</a>
+          <a class="nav-link" href="#contact" (click)="closeMenu()">Contact</a>
         </li>
         <li class="nav-item ms-2">
           <button
