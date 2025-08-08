@@ -66,7 +66,7 @@
       <div class="col-lg-7">
         <div class="contact-form glass-card">
           <h3 class="mb-4">Send Me a Message</h3>
-          <form (ngSubmit)="submitForm()" #contactForm="ngForm">
+          <form (ngSubmit)="contactForm.form.valid && submitForm()" #contactForm="ngForm" novalidate>
             <div class="row">
               <div class="col-md-6 mb-3">
                 <div class="form-group">
@@ -81,7 +81,7 @@
                     required
                     #nameInput="ngModel"
                   />
-                  <div *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)" class="text-danger mt-1">
+                  <div *ngIf="nameInput.invalid && contactForm.submitted && !isSubmitted" class="text-danger mt-1">
                     <small *ngIf="nameInput.errors?.['required']">Name is required</small>
                   </div>
                 </div>
@@ -100,7 +100,7 @@
                     email
                     #emailInput="ngModel"
                   />
-                  <div *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)" class="text-danger mt-1">
+                  <div *ngIf="emailInput.invalid && contactForm.submitted && !isSubmitted" class="text-danger mt-1">
                     <small *ngIf="emailInput.errors?.['required']">Email is required</small>
                     <small *ngIf="emailInput.errors?.['email']">Please enter a valid email</small>
                   </div>
@@ -119,7 +119,7 @@
                 required
                 #subjectInput="ngModel"
               />
-              <div *ngIf="subjectInput.invalid && (subjectInput.dirty || subjectInput.touched)" class="text-danger mt-1">
+              <div *ngIf="subjectInput.invalid && contactForm.submitted && !isSubmitted" class="text-danger mt-1">
                 <small *ngIf="subjectInput.errors?.['required']">Subject is required</small>
               </div>
             </div>
@@ -135,7 +135,7 @@
                 required
                 #messageInput="ngModel"
               ></textarea>
-              <div *ngIf="messageInput.invalid && (messageInput.dirty || messageInput.touched)" class="text-danger mt-1">
+              <div *ngIf="messageInput.invalid && contactForm.submitted && !isSubmitted" class="text-danger mt-1">
                 <small *ngIf="messageInput.errors?.['required']">Message is required</small>
               </div>
             </div>
@@ -149,13 +149,15 @@
             </button>
             
             <!-- Success message -->
-            <div *ngIf="isSubmitted" class="alert alert-success mt-3">
-              <i class="bi bi-check-circle me-2"></i> Your message has been sent successfully! I'll get back to you soon.
+            <div *ngIf="isSubmitted" class="toast-notification success">
+              <i class="bi bi-check-circle"></i>
+              <div class="toast-content">Your message has been sent successfully! I'll get back to you soon.</div>
             </div>
             
             <!-- Error message -->
-            <div *ngIf="hasError" class="alert alert-danger mt-3">
-              <i class="bi bi-exclamation-triangle me-2"></i> {{ errorMessage }}
+            <div *ngIf="hasError" class="toast-notification error">
+              <i class="bi bi-exclamation-triangle"></i>
+              <div class="toast-content">{{ errorMessage }}</div>
             </div>
           </form>
         </div>

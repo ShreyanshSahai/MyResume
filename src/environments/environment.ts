@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  web3FormsAccessKey: '1cb95d78-cbb3-438a-90e5-db4e71dca86d',
+  web3FormsAccessKey: '4965baef-fee2-4324-a478-c09a2402813c',
 };

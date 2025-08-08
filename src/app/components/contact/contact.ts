@@ -68,7 +68,11 @@ export class Contact implements OnInit, OnDestroy {
     
     this.isSubmitting = true;
     this.hasError = false;
+    this.isSubmitted = false;
     this.errorMessage = '';
+    
+    // Get the form element to reset its state later
+    const contactForm = document.querySelector('form') as HTMLFormElement;
     
     try {
       const formData = new FormData();
@@ -99,12 +103,24 @@ export class Contact implements OnInit, OnDestroy {
           message: ''
         };
         this.isSubmitted = true;
+        this.hasError = false; // Ensure error is hidden when submission is successful
+        
+        // Reset the form's submitted state to clear validation errors
+        if (contactForm) {
+          // Use ViewChild to access the form and reset it properly
+          setTimeout(() => {
+            // This resets the native form element without affecting our model
+            contactForm.reset();
+          }, 100); // Small delay to ensure DOM updates
+        }
       } else {
         this.hasError = true;
+        this.isSubmitted = false; // Ensure success message is hidden when there's an error
         this.errorMessage = data.message || 'Something went wrong. Please try again.';
       }
     } catch (error) {
       this.hasError = true;
+      this.isSubmitted = false; // Ensure success message is hidden when there's an error
       this.errorMessage = 'An unexpected error occurred. Please try again later.';
       console.error('Form submission error:', error);
     } finally {
