@@ -15,7 +15,6 @@ export class Header implements AfterViewInit {
   private titleTyped!: Typed;
   
   ngAfterViewInit() {
-    // Initialize typing effect for title only
     this.titleTyped = new Typed(this.titleElement.nativeElement, {
       strings: ['Full Stack Engineer'],
       typeSpeed: 60,
@@ -28,7 +27,6 @@ export class Header implements AfterViewInit {
   }
   
   downloadCV() {
-    // TODO: Implement CV download functionality
     console.log('Downloading CV...');
   }
 }

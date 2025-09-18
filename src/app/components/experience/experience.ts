@@ -98,10 +98,7 @@ export class Experience implements AfterViewInit, OnInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    // Initialize the 3D effect after the view is initialized
     this.initTiltEffect();
-
-    // Add intersection observer for scroll animations
     this.setupScrollAnimation();
   }
 
@@ -111,24 +108,20 @@ export class Experience implements AfterViewInit, OnInit, OnDestroy {
       const card = cardRef.nativeElement;
       const rect = card.getBoundingClientRect();
 
-      // Check if mouse is over the card
       if (
         event.clientX >= rect.left &&
         event.clientX <= rect.right &&
         event.clientY >= rect.top &&
         event.clientY <= rect.bottom
       ) {
-        // Calculate mouse position relative to the card center
         const cardCenterX = rect.left + rect.width / 2;
         const cardCenterY = rect.top + rect.height / 2;
 
-        // Calculate rotation based on mouse position
         const rotationY =
           ((event.clientX - cardCenterX) / (rect.width / 2)) * 5;
         const rotationX =
           ((cardCenterY - event.clientY) / (rect.height / 2)) * 5;
 
-        // Apply the rotation using CSS variables
         card.style.setProperty('--rotation-x', `${rotationX}deg`);
         card.style.setProperty('--rotation-y', `${rotationY}deg`);
       }
@@ -137,7 +130,6 @@ export class Experience implements AfterViewInit, OnInit, OnDestroy {
 
   @HostListener('mouseleave')
   onMouseLeave() {
-    // Reset rotations when mouse leaves the component
     this.experienceCards.forEach((cardRef) => {
       const card = cardRef.nativeElement;
       card.style.setProperty('--rotation-x', '0deg');
@@ -146,7 +138,6 @@ export class Experience implements AfterViewInit, OnInit, OnDestroy {
   }
 
   private initTiltEffect() {
-    // Initialize default rotation values
     this.experienceCards.forEach((cardRef) => {
       const card = cardRef.nativeElement;
       card.style.setProperty('--rotation-x', '0deg');
@@ -155,7 +146,6 @@ export class Experience implements AfterViewInit, OnInit, OnDestroy {
   }
 
   private setupScrollAnimation() {
-    // Create an intersection observer for scroll-based animations
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -164,10 +154,9 @@ export class Experience implements AfterViewInit, OnInit, OnDestroy {
           }
         });
       },
-      { threshold: 0.1 } // Trigger when at least 10% of the element is visible
+      { threshold: 0.1 }
     );
 
-    // Observe each experience card
     this.experienceCards.forEach((cardRef) => {
       observer.observe(cardRef.nativeElement);
     });
