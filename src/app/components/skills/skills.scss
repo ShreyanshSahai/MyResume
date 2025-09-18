@@ -52,6 +52,7 @@
     border: 1px solid var(--border-color);
     position: relative;
     overflow: hidden;
+    cursor: pointer;
     
     &::before {
       content: "";
@@ -102,7 +103,38 @@
       opacity: 0.2;
     }
 
-    /* Hover effect removed as requested */
+    /* Hover effects */
+    &:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 15px 30px var(--shadow-color), 0 0 20px rgba(var(--primary-color-rgb), 0.3);
+      
+      &::after {
+        opacity: 1;
+        height: 8px;
+      }
+      
+      &::before {
+        opacity: 0.4;
+        animation: shine 1.5s infinite alternate;
+      }
+      
+      .category-title {
+        color: var(--primary-color);
+        
+        &::after {
+          width: 80px;
+          background: linear-gradient(
+            to right,
+            var(--accent-color),
+            var(--primary-color)
+          );
+        }
+      }
+      
+      .skill-item .progress .progress-bar {
+        animation: pulse 1.5s infinite;
+      }
+    }
 
     .category-title {
       color: var(--text-color);
@@ -192,6 +224,34 @@
 @keyframes shimmer {
   100% {
     transform: translateX(100%);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    background: linear-gradient(
+      to right,
+      var(--primary-color),
+      var(--accent-color)
+    );
+  }
+  50% {
+    opacity: 0.8;
+    background: linear-gradient(
+      to right,
+      var(--accent-color),
+      var(--primary-color)
+    );
+  }
+}
+
+@keyframes shine {
+  from {
+    transform: rotate(30deg) translateX(-30%);
+  }
+  to {
+    transform: rotate(30deg) translateX(30%);
   }
 }
 
