@@ -24,20 +24,21 @@ export class Skills {
     {
       name: 'Frontend Development',
       skills: [
-        { name: 'HTML5', level: 90, icon: 'bi bi-code-slash' },
-        { name: 'CSS3', level: 85, icon: 'bi bi-brush' },
-        { name: '.Net Web Forms', level: 85, icon: 'bi bi-diagram-3' },
+        { name: '.Net MVC', level: 80, icon: 'bi bi-diagram-3' },
+        { name: '.Net Web Forms', level: 80, icon: 'bi bi-diagram-3' },
         { name: 'JavaScript', level: 80, icon: 'bi bi-journal-code' },
-        { name: 'React', level: 75, icon: 'bi bi-code-square' },
+        { name: 'React JS', level: 75, icon: 'bi bi-code-square' },
+        { name: 'Next JS', level: 75, icon: 'bi bi-lightning-charge' },
       ],
     },
     {
       name: 'Backend Development',
       skills: [
         { name: '.Net Core', level: 85, icon: 'bi bi-file-earmark' },
-        { name: 'SQL', level: 85, icon: 'bi bi-database' },
+        { name: 'MS SQL', level: 85, icon: 'bi bi-database' },
         { name: 'C#', level: 85, icon: 'bi bi-filetype-cs' },
         { name: 'Java', level: 55, icon: 'bi bi-cup-hot' },
+        { name: 'JavaScript', level: 55, icon: 'bi bi-filetype-js' },
       ],
     },
     {
@@ -45,7 +46,7 @@ export class Skills {
       skills: [
         { name: 'Git', level: 88, icon: 'bi bi-git' },
         { name: 'Clean Code Architecture', level: 90, icon: 'bi bi-cloud' },
-        { name: 'Repository Methods', level: 85, icon: 'bi bi-kanban' },
+        { name: 'Repository Methods', level: 85, icon: 'bi bi-folder-fill' },
         { name: 'Agile', level: 85, icon: 'bi bi-kanban' },
         { name: 'Scrum', level: 80, icon: 'bi bi-kanban' },
       ],
