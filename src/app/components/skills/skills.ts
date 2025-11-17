@@ -44,11 +44,11 @@ export class Skills {
     {
       name: 'Tools & Others',
       skills: [
+        { name: 'Azure', level: 88, icon: 'bi bi-cloud-fill' },
         { name: 'Git', level: 88, icon: 'bi bi-git' },
+        { name: 'Postman', level: 100, icon: 'bi bi-box-arrow-up-right' },
         { name: 'Clean Code Architecture', level: 90, icon: 'bi bi-cloud' },
-        { name: 'Repository Methods', level: 85, icon: 'bi bi-folder-fill' },
         { name: 'Agile', level: 85, icon: 'bi bi-kanban' },
-        { name: 'Scrum', level: 80, icon: 'bi bi-kanban' },
       ],
     },
   ];
