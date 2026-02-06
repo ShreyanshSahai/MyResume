@@ -1,310 +1,148 @@
-// Typing effect styles
-.typing-container {
-  min-height: 120px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.name-text {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: white;
-  font-family: 'Montserrat', sans-serif;
-  margin-bottom: 10px;
-  letter-spacing: 1px;
-}
-
-.title-text {
-  font-size: 1.5rem;
-  font-weight: 400;
-  color: white;
-  font-family: 'Roboto', sans-serif;
-  margin-top: 5px;
-  letter-spacing: 0.5px;
-}
-
-// Cursor styling
-.typed-cursor {
-  opacity: 1;
-  color: white;
-  font-size: 2rem;
-  animation: typedjsBlink 0.7s infinite;
-  -webkit-animation: typedjsBlink 0.7s infinite;
-  margin-left: 5px;
-}
-
-@keyframes typedjsBlink {
-  50% { opacity: 0.0; }
-}
-
-@-webkit-keyframes typedjsBlink {
-  0% { opacity: 1; }
-  50% { opacity: 0.0; }
-  100% { opacity: 1; }
-}
-
-.typed-fade-out {
-  opacity: 0;
-  transition: opacity .25s;
-  -webkit-animation: 0;
-  animation: 0;
-}
+@use "../../../mixins" as *;
 
 #header {
-  background: var(--bg-gradient);
-  padding: 120px 0 80px;
   position: relative;
-  overflow: hidden;
+  background: transparent;
   min-height: 100vh;
   display: flex;
   align-items: center;
-  color: var(--text-color); 
-  font-family: 'Inter', sans-serif;
+  justify-content: center;
 
-  /* In dark theme, we need to ensure text is visible against the gradient */
-  [data-theme="dark"] & {
-    color: var(--text-color);
-  }
-
-  /* For light theme, we need to ensure text contrasts with the gradient */
-  [data-theme="light"] & {
-    color: white; /* Keep white text for light theme header due to gradient background */
-  }
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="20" fill="none"/><path d="M0 20L20 0H10L0 10M20 20V10L10 20" fill="rgba(255,255,255,0.05)"/></svg>');
-    opacity: 0.1;
-  }
-
-  .header-content {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 3rem;
-    border: 1px solid var(--glass-highlight);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    transform-style: preserve-3d;
-    perspective: 1000px;
-    transition: transform 0.5s ease;
-
-    &:hover {
-      transform: translateZ(20px) rotateX(2deg) rotateY(2deg);
-    }
-  }
-
-  h1 {
-    margin-bottom: 1rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-    animation: fadeInDown 1s ease;
-    position: relative;
-    display: inline-block;
-  }
-
-  .lead {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    animation: fadeInUp 1s ease 0.2s;
-    animation-fill-mode: both;
-  }
-
-  p {
-    animation: fadeInUp 1s ease 0.4s;
-    animation-fill-mode: both;
-  }
-
-  .btn {
-    border-width: 2px;
+  .glass-badge {
+    @include glass-panel;
     padding: 0.5rem 1.5rem;
-    transition: all 0.3s ease;
-    animation: fadeInUp 1s ease 0.6s;
-    animation-fill-mode: both;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-
-    &::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.2),
-        transparent
-      );
-      transition: left 0.7s ease;
-      z-index: -1;
-    }
-
-    &:hover {
-      transform: translateY(-5px) scale(1.02);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-
-      &::before {
-        left: 100%;
-      }
-    }
-
-    &.btn-primary {
-      background-color: var(--btn-primary-bg);
-      color: var(--btn-primary-text);
-      border-color: transparent;
-
-      &:hover {
-        background-color: var(--primary-color);
-      }
-    }
-
-    &.btn-outline-primary {
-      background-color: var(--btn-outline-bg);
-      color: white; /* Change this to white for better visibility on gradient background */
-      border-color: rgba(
-        255,
-        255,
-        255,
-        0.5
-      ); /* Lighter border for better visibility */
-
-      &:hover {
-        background-color: rgba(255, 255, 255, 0.1);
-        color: white;
-      }
-    }
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
+    animation: float-badge 3s ease-in-out infinite alternate;
 
     i {
-      font-size: 1.1em;
-      transform: translateY(1px);
+      color: var(--accent);
     }
   }
 
-  /* Floating elements styling */
-  .floating-elements {
+  /* Blobs for background */
+  .blob {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    pointer-events: none;
-  }
-
-  .floating-element {
-    position: absolute;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(5px);
+    width: 600px;
+    height: 600px;
     border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    animation: float 15s infinite ease-in-out;
-    z-index: -1; /* Add this to ensure elements stay behind content */
+    filter: blur(100px);
+    opacity: 0.2;
+    z-index: 1;
+    animation: float 20s infinite ease-in-out alternate;
+  }
 
-    &.element-1 {
-      width: 80px;
-      height: 80px;
-      top: 10%;
-      left: 10%;
-      animation-delay: 0s;
-    }
+  .blob-1 {
+    top: -10%;
+    left: -10%;
+    background: var(--primary);
+  }
 
-    &.element-2 {
-      width: 120px;
-      height: 120px;
-      top: 15%; /* Adjusted from 20% */
-      right: 10%; /* Adjusted from 15% */
-      animation-delay: 2s;
-    }
+  .blob-2 {
+    bottom: -10%;
+    right: -10%;
+    background: var(--secondary);
+    animation-delay: -10s;
+  }
 
-    &.element-3 {
-      width: 60px;
-      height: 60px;
-      bottom: 15%;
-      left: 20%;
-      animation-delay: 4s;
-    }
+  .title-text span {
+    color: var(--primary);
+  }
 
-    &.element-4 {
-      width: 100px;
-      height: 100px;
-      bottom: 25%;
-      right: 10%;
-      animation-delay: 6s;
-    }
-
-    &.element-5 {
+  .social-links {
+    .social-icon {
       width: 50px;
       height: 50px;
-      top: 50%;
-      left: 50%;
-      animation-delay: 8s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: var(--text-muted);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.03);
+      transition: all 0.3s ease;
+
+      &:hover {
+        color: white;
+        background: var(--primary);
+        border-color: var(--primary);
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+      }
+    }
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.7;
+    z-index: 10;
+
+    .mouse {
+      width: 26px;
+      height: 40px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 20px;
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 4px;
+        height: 4px;
+        background: white;
+        border-radius: 50%;
+        animation: scroll 2s infinite;
+      }
     }
   }
 }
 
 @keyframes float {
   0% {
-    transform: translateY(0) rotate(0deg);
+    transform: translate(0, 0) scale(1);
   }
+
   50% {
-    transform: translateY(-20px) rotate(10deg);
+    transform: translate(30px, 30px) scale(1.05);
   }
+
   100% {
-    transform: translateY(0) rotate(0deg);
+    transform: translate(-30px, 50px) scale(0.95);
   }
 }
 
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
+@keyframes float-badge {
+  0% {
     transform: translateY(0);
   }
+
+  100% {
+    transform: translateY(-5px);
+  }
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
+@keyframes scroll {
+  0% {
+    transform: translate(-50%, 0);
     opacity: 1;
-    transform: translateY(0);
   }
-}
 
-@media (max-width: 768px) {
-  #header {
-    padding: 100px 0 60px;
-
-    h1 {
-      font-size: 2.5rem;
-    }
-
-    .lead {
-      font-size: 1.25rem;
-    }
-
-    .btn {
-      padding: 0.4rem 1rem;
-      font-size: 0.9rem;
-    }
-
-    .header-content {
-      padding: 2rem 1rem;
-    }
+  100% {
+    transform: translate(-50%, 15px);
+    opacity: 0;
   }
 }

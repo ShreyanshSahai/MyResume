@@ -1,231 +1,170 @@
-/* You can add global styles to this file, and also import other style files */
+@use "./mixins" as *;
+
+/* Global Styles & Theme Variables */
 @import "bootstrap/dist/css/bootstrap.min.css";
 @import "bootstrap-icons/font/bootstrap-icons.css";
+@import "aos/dist/aos.css";
+
+/* Font Imports (assuming @fontsource usage or fallback to Google Fonts) */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Inter:wght@300;400;500;600&display=swap');
 
 :root {
-  /* Light Theme Variables */
-  --primary-color: #0d6efd;
-  --primary-color-rgb: 13, 110, 253;
-  --secondary-color: #6610f2;
-  --accent-color: #2ecc71;
-  --text-color: #2c3e50;
-  --text-light: #7f8c8d;
-  --bg-color: white;
-  --bg-card: rgba(255, 255, 255, 0.7);
-  --bg-gradient: linear-gradient(135deg, #0d6efd, #6610f2);
-  --shadow-color: rgba(0, 0, 0, 0.1);
-  --border-color: rgba(13, 110, 253, 0.2);
-  --glass-highlight: rgba(255, 255, 255, 0.8);
-  --glass-shadow: rgba(0, 0, 0, 0.05);
-  --navbar-bg: rgba(255, 255, 255, 0.8);
-  --navbar-text: #2c3e50;
-  --card-bg: rgba(240, 242, 245, 0.9);
-  --btn-primary-bg: var(--primary-color);
-  --btn-primary-text: white;
-  --btn-outline-bg: transparent;
-  --btn-outline-text: var(--primary-color);
-  --btn-outline-border: var(--primary-color);
+  /* Premium Dark Theme (Default) */
+  --primary-rgb: 99, 102, 241;
+  /* Indigo 500 */
+  --primary: rgb(var(--primary-rgb));
+  --secondary-rgb: 236, 72, 153;
+  /* Pink 500 */
+  --secondary: rgb(var(--secondary-rgb));
+  --accent-rgb: 14, 165, 233;
+  /* Sky 500 */
+  --accent: rgb(var(--accent-rgb));
 
-  /* 3D Effect Variables */
-  --depth-small: 5px;
-  --depth-medium: 10px;
-  --depth-large: 15px;
-  --perspective: 1000px;
-  --rotation-x: 0deg;
-  --rotation-y: 0deg;
-  --transition-speed: 0.3s;
+  --bg-dark: #0f172a;
+  /* Slate 900 */
+  --bg-darker: #020617;
+  /* Slate 950 */
+
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-bg: rgba(15, 23, 42, 0.6);
+  --glass-highlight: rgba(255, 255, 255, 0.03);
+
+  --gradient-main: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  --gradient-glow: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.15) 0%, rgba(15, 23, 42, 0) 70%);
+
+  /* Animation Speeds */
+  --ease-spring: cubic-bezier(0.43, 0.13, 0.23, 0.96);
 }
 
-[data-theme="dark"] {
-  /* Dark Theme Variables */
-  --primary-color: #4d94ff;
-  --primary-color-rgb: 77, 148, 255;
-  --secondary-color: #9d50ff;
-  --accent-color: #50d890;
-  --text-color: #e0e0e0;
-  --text-light: #b0b0b0;
-  --bg-color: #121212;
-  --bg-card: rgba(30, 30, 30, 0.7);
-  --bg-gradient: linear-gradient(135deg, #1a1a2e, #16213e);
-  --shadow-color: rgba(0, 0, 0, 0.3);
-  --border-color: rgba(77, 148, 255, 0.3);
-  --glass-highlight: rgba(255, 255, 255, 0.1);
-  --glass-shadow: rgba(0, 0, 0, 0.2);
-  --navbar-bg: rgba(18, 18, 18, 0.8);
-  --navbar-text: #e0e0e0;
-  --card-bg: rgba(40, 44, 52, 0.9);
-  --btn-primary-bg: var(--primary-color);
-  --btn-primary-text: #121212;
-  --btn-outline-bg: transparent;
-  --btn-outline-text: var(--primary-color);
-  --btn-outline-border: var(--primary-color);
-}
-
-/* Glass Morphism Mixins */
-@mixin glass-effect {
-  background: var(--bg-card);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid var(--border-color);
-  box-shadow: 0 8px 32px var(--shadow-color);
-}
-
-@mixin glass-card {
-  @include glass-effect;
-  border-radius: 16px;
-  padding: 20px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border: 1px solid var(--border-color);
-  box-shadow: 0 8px 20px var(--shadow-color);
-  position: relative;
-  
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: inherit;
-    background: url('data:image/svg+xml,<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="20" fill="none"/><path d="M0 20L20 0H10L0 10M20 20V10L10 20" fill="rgba(0,0,0,0.04)"/></svg>');
-    opacity: 0.7;
-    z-index: 0;
-    pointer-events: none;
-  }
-  
-  [data-theme="dark"] &::before {
-    background: url('data:image/svg+xml,<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="20" fill="none"/><path d="M0 20L20 0H10L0 10M20 20V10L10 20" fill="rgba(255,255,255,0.05)"/></svg>');
-    opacity: 0.2;
-  }
-
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px var(--shadow-color);
-  }
-}
-
-@mixin glass-button {
-  @include glass-effect;
-  border-radius: 30px;
-  padding: 10px 25px;
-  transition: all 0.3s ease;
-
-  &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px var(--shadow-color);
-  }
-}
-
-/* 3D Effect Mixins */
-@mixin card-3d-effect {
-  transform-style: preserve-3d;
-  perspective: var(--perspective);
-  transition: transform var(--transition-speed) ease;
-
-  &:hover {
-    transform: rotateX(var(--rotation-x)) rotateY(var(--rotation-y))
-      translateZ(var(--depth-small));
-  }
-}
-
-@mixin depth-effect {
-  position: relative;
-
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background: inherit;
-    transform: translateZ(-1px);
-    filter: blur(5px);
-    opacity: 0.7;
-    z-index: -1;
-  }
-}
-
-/* Global Styles */
 body {
-  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
-  line-height: 1.6;
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-darker);
+  color: var(--text-main);
   overflow-x: hidden;
-  position: relative;
-  
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="20" fill="none"/><path d="M0 20L20 0H10L0 10M20 20V10L10 20" fill="rgba(0,0,0,0.02)"/></svg>');
-    opacity: 0.5;
-    z-index: -1;
-    pointer-events: none;
-  }
-  
-  [data-theme="dark"] &::before {
-    background: url('data:image/svg+xml,<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="20" fill="none"/><path d="M0 20L20 0H10L0 10M20 20V10L10 20" fill="rgba(255,255,255,0.05)"/></svg>');
-    opacity: 0.1;
-  }
+  margin: 0;
+  min-height: 100vh;
+  background-image: var(--gradient-glow);
+  background-attachment: fixed;
 }
 
-.light-theme {
-  background-color: var(--bg-color);
-  color: var(--text-color);
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
-.dark-theme {
-  background-color: var(--bg-color);
-  color: var(--text-color);
+/* Glassmorphism Mixin */
+@mixin glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-section {
-  padding: 80px 0;
-  position: relative;
-}
-
-.btn {
-  transition: all 0.3s ease;
-
-  &:hover {
-    transform: translateY(-2px);
-  }
+/* Utilities */
+.text-gradient {
+  background: var(--gradient-main);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 800;
 }
 
 .glass-card {
-  @include glass-card;
+  @include glass-panel;
+  border-radius: 24px;
+  padding: 2rem;
+  transition: transform 0.3s var(--ease-spring), box-shadow 0.3s var(--ease-spring);
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
 }
 
-.glass-button {
-  @include glass-button;
+/* Super Button */
+.btn-super {
+  position: relative;
+  padding: 12px 32px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  text-decoration: none !important;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border: 1px solid var(--glass-border);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  z-index: 1;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient-main);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+    border-color: transparent;
+    color: white;
+
+    &::before {
+      opacity: 1;
+    }
+  }
 }
 
-.card-3d {
-  @include card-3d-effect;
+/* Section Styling */
+section {
+  padding: 100px 0;
+  position: relative;
 }
 
-.depth-effect {
-  @include depth-effect;
-}
-
-/* Custom Scrollbar */
+/* Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-color);
+  background: var(--bg-darker);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--primary-color);
-  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--secondary-color);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Background Noise (optional texture) */
+.bg-noise {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }

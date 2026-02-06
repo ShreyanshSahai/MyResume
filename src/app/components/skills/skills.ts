@@ -22,33 +22,33 @@ interface SkillCategory {
 export class Skills {
   skillCategories: SkillCategory[] = [
     {
-      name: 'Frontend Development',
+      name: 'Backend & Cloud',
       skills: [
-        { name: '.Net MVC', level: 80, icon: 'bi bi-diagram-3' },
-        { name: '.Net Web Forms', level: 80, icon: 'bi bi-diagram-3' },
-        { name: 'JavaScript', level: 80, icon: 'bi bi-journal-code' },
-        { name: 'React JS', level: 75, icon: 'bi bi-code-square' },
-        { name: 'Next JS', level: 75, icon: 'bi bi-lightning-charge' },
+        { name: '.NET Core / 8.0', level: 95, icon: 'bi bi-code-square' },
+        { name: 'C#', level: 95, icon: 'bi bi-filetype-cs' },
+        { name: 'AWS Ecosystem', level: 85, icon: 'bi bi-amazon' },
+        { name: 'Microservices', level: 85, icon: 'bi bi-diagram-3-fill' },
+        { name: 'API Design (REST)', level: 90, icon: 'bi bi-gear-wide-connected' }
       ],
     },
     {
-      name: 'Backend Development',
+      name: 'Frontend',
       skills: [
-        { name: '.Net Core', level: 85, icon: 'bi bi-file-earmark' },
-        { name: 'MS SQL', level: 85, icon: 'bi bi-database' },
-        { name: 'C#', level: 85, icon: 'bi bi-filetype-cs' },
-        { name: 'Java', level: 55, icon: 'bi bi-cup-hot' },
-        { name: 'JavaScript', level: 55, icon: 'bi bi-filetype-js' },
+        { name: 'Angular 18+', level: 90, icon: 'bi bi-file-type-html' },
+        { name: 'TypeScript', level: 90, icon: 'bi bi-file-code' },
+        { name: 'React', level: 75, icon: 'bi bi-atom' },
+        { name: 'Next.js', level: 70, icon: 'bi bi-lightning' },
+        { name: 'SCSS/Tailwind', level: 85, icon: 'bi bi-palette' },
       ],
     },
     {
-      name: 'Tools & Others',
+      name: 'Database & DevOps',
       skills: [
-        { name: 'Azure', level: 88, icon: 'bi bi-cloud-fill' },
-        { name: 'Git', level: 88, icon: 'bi bi-git' },
-        { name: 'Postman', level: 100, icon: 'bi bi-box-arrow-up-right' },
-        { name: 'Clean Code Architecture', level: 90, icon: 'bi bi-cloud' },
-        { name: 'Agile', level: 85, icon: 'bi bi-kanban' },
+        { name: 'SQL Server', level: 90, icon: 'bi bi-database-fill' },
+        { name: 'PostgreSQL', level: 80, icon: 'bi bi-database' },
+        { name: 'Docker', level: 80, icon: 'bi bi-box-seam' },
+        { name: 'CI/CD Pipelines', level: 80, icon: 'bi bi-infinity' },
+        { name: 'Redis', level: 75, icon: 'bi bi-layers' },
       ],
     },
   ];

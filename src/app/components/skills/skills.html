@@ -1,32 +1,23 @@
-<section id="skills" class="skills py-5">
-  <div class="container">
+<section id="skills" class="skills py-5 section-bg">
+  <div class="container my-5">
     <div class="row">
       <div class="col-lg-12 text-center mb-5">
-        <h2 class="section-title">Technical Skills</h2>
+        <h2 class="section-title" data-aos="fade-up">Technical Arsenal</h2>
         <div class="section-divider"></div>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-lg-4 mb-4" *ngFor="let category of skillCategories">
+      <div class="col-12 mb-5" *ngFor="let category of skillCategories" data-aos="fade-up">
         <div class="skill-category">
-          <h3 class="category-title mb-4">{{ category.name }}</h3>
-          <div class="skill-item" *ngFor="let skill of category.skills">
-            <div class="skill-header">
-              <div class="skill-name">
-                <i [class]="skill.icon"></i>
-                <span>{{ skill.name }}</span>
+          <h3 class="category-title">{{ category.name }}</h3>
+          <div class="skills-grid">
+            <div class="skill-card" *ngFor="let skill of category.skills">
+              <i [class]="skill.icon"></i>
+              <div class="skill-name">{{ skill.name }}</div>
+              <div class="skill-level-bar">
+                <div class="level-fill" [style.width.%]="skill.level"></div>
               </div>
-              <div class="skill-percentage">{{ skill.level }}%</div>
-            </div>
-            <div class="progress">
-              <div
-                class="progress-bar"
-                [style.width.%]="skill.level"
-                [attr.aria-valuenow]="skill.level"
-                aria-valuemin="0"
-                aria-valuemax="100"
-              ></div>
             </div>
           </div>
         </div>

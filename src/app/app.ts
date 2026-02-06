@@ -1,4 +1,5 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, OnInit } from '@angular/core';
+import AOS from 'aos';
 import { Header } from './components/header/header';
 import { About } from './components/about/about';
 import { Skills } from './components/skills/skills';
@@ -25,6 +26,15 @@ import { Footer } from './shared/footer/footer';
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
-export class App {
+export class App implements OnInit {
   protected readonly title = signal('Shreyansh Sahai - Full Stack Engineer');
+
+  ngOnInit() {
+    AOS.init({
+      duration: 1000,
+      easing: 'ease-out-cubic',
+      once: true,
+      mirror: false
+    });
+  }
 }

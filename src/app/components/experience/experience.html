@@ -1,32 +1,27 @@
 <section class="experience" id="experience">
-  <div class="animated-bg">
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-  </div>
-  
-  <h2 class="section-title">Work Experience</h2>
-  <div class="section-divider"></div>
-  
-  <div class="experience-container">
-    <div class="experience-card" *ngFor="let exp of experiences" #experienceCard>
-      <div class="card-content">
-        <div class="company-logo">
-          <img [src]="getLogoPath(exp)" [alt]="exp.company + ' logo'">
-        </div>
-        <div class="experience-content">
-          <h3 class="company-name">{{ exp.company }}</h3>
-          <h4 class="position">{{ exp.position }}</h4>
-          <p class="duration">{{ exp.duration }}</p>
-          <ul class="achievements">
-            <li *ngFor="let achievement of exp.achievements">{{ achievement }}</li>
-          </ul>
+  <div class="container">
+    <h2 class="section-title" data-aos="fade-up">Work History</h2>
+
+    <div class="timeline">
+      <div class="timeline-item" *ngFor="let exp of experiences; let i = index"
+        [attr.data-aos]="i % 2 === 0 ? 'fade-right' : 'fade-left'">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="d-flex flex-column gap-2 w-100">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+              <span class="duration-badge">{{ exp.duration }}</span>
+            </div>
+            <h3 class="company-name">{{ exp.company }}</h3>
+            <h4 class="role-title">{{ exp.position }}</h4>
+
+            <ul class="achievements mt-3">
+              <li *ngFor="let achievement of exp.achievements">
+                {{ achievement }}
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-      <div class="card-shine"></div>
-      <div class="card-glow"></div>
     </div>
   </div>
 </section>
