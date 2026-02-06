@@ -1,16 +1,8 @@
-<nav class="navbar navbar-expand-lg fixed-top glass-navbar">
+<nav class="navbar navbar-expand-lg fixed-top">
   <div class="container">
     <a class="navbar-brand" href="#">Shreyansh Sahai</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNav"
-      aria-controls="navbarNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-      (click)="toggleMenu()"
-    >
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleMenu()">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
@@ -36,21 +28,7 @@
         <li class="nav-item">
           <a class="nav-link" href="#contact" (click)="closeMenu()">Contact</a>
         </li>
-        <li class="nav-item ms-2">
-          <button
-            class="theme-toggle"
-            (click)="toggleTheme()"
-            aria-label="Toggle theme"
-          >
-            <i
-              class="bi"
-              [ngClass]="{
-                'bi-moon-stars-fill': isDarkTheme,
-                'bi-sun-fill': !isDarkTheme
-              }"
-            ></i>
-          </button>
-        </li>
+
       </ul>
     </div>
   </div>

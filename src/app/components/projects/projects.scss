@@ -1,429 +1,110 @@
+@use "../../../mixins" as *;
+
 .projects {
-  background-color: var(--bg-color);
-
   .section-title {
-    position: relative;
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-weight: 700;
-    color: var(--text-color);
-    margin-bottom: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    z-index: 1;
-    animation: float-title 3s ease-in-out infinite;
-    /* Removed neon effect for better appearance in light mode */
-    
-    /* Removed ::before pseudo-element with blur effect */
-  }
-
-  /* Shimmering Divider */
-  .section-divider {
-    height: 4px;
-    width: 100px;
-    background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
-    margin: 0 auto 50px;
-    position: relative;
-    border-radius: 2px;
-    z-index: 1;
-    overflow: hidden;
-    
-    &::before {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
-      transform: translateX(-100%);
-      animation: shimmer 2s infinite;
-    }
-  }
-
-  .section-subtitle {
-    color: var(--text-light);
-    font-size: 1.1rem;
     margin-bottom: 3rem;
+    background: var(--gradient-main);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
+}
 
-  .project-item {
-    margin-bottom: 5rem;
-    padding: 2rem;
-    border-radius: 16px;
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-    position: relative;
-    overflow: hidden;
-    transform-style: preserve-3d;
-    perspective: 1000px;
-    background: var(--card-bg);
-    backdrop-filter: blur(10px);
-    transform: scale(1);
+.project-item {
+  margin-bottom: 6rem;
+  align-items: center;
+  position: relative;
 
-    -webkit-backdrop-filter: blur(10px);
-    
-    &::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('data:image/svg+xml,<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="20" fill="none"/><path d="M0 20L20 0H10L0 10M20 20V10L10 20" fill="rgba(0,0,0,0.08)"/></svg>');
-      opacity: 1;
-      z-index: 0;
-      pointer-events: none;
-    }
-    
-    [data-theme="dark"] &::before {
-      background: url('data:image/svg+xml,<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="20" fill="none"/><path d="M0 20L20 0H10L0 10M20 20V10L10 20" fill="rgba(255,255,255,0.05)"/></svg>');
-      opacity: 0.2;
-    }
-    border: 1px solid var(--border-color);
-    box-shadow: 0 10px 30px var(--shadow-color);
-    
-    /* Gradient border effect */
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 6px;
-      background: linear-gradient(to bottom, var(--primary-color) 0%, rgba(var(--primary-color-rgb), 0.1) 80%, transparent 100%);
-      opacity: 0.9;
-      z-index: 2;
-      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-    
-    /* Hover effects */
-    &:hover {
-      transform: translateY(-10px) scale(1.05);
-      box-shadow: 0 15px 30px var(--shadow-color), 0 0 20px rgba(var(--primary-color-rgb), 0.3);
-      
-      &::after {
-        opacity: 1;
-        height: 8px;
-      }
-      
-      &::before {
-        opacity: 0.4;
-        animation: shine 1.5s infinite alternate;
-      }
-      
-      .project-title {
-        color: var(--primary-color);
-        
-        &::after {
-          width: 80px;
-          background: linear-gradient(
-            to right,
-            var(--accent-color),
-            var(--primary-color)
-          );
-        }
-      }
-      
-      .project-image {
-        transform: scale(1.05);
-      }
-      
-      .btn.btn-primary {
-        transform: translateY(-5px) scale(1.05);
-        box-shadow: 0 10px 15px var(--shadow-color);
-      }
-    }
-    
-    /* Glass effect highlight */
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -50%;
-      width: 200%;
-      height: 100%;
-      background: linear-gradient(
-        to right,
-        transparent,
-        var(--glass-highlight),
-        transparent
-      );
-      transform: rotate(30deg);
-      opacity: 0.2;
-      z-index: 0;
-    }
-
-    /* Hover effect removed as requested */
-    .project-image {
-      transform: scale(1) translateZ(0);
-      transition: none;
-    }
-
-    .project-title::after {
-        width: 100px;
-        background: linear-gradient(
-          to right,
-          var(--primary-color),
-          var(--secondary-color),
-          var(--accent-color)
-        );
-      }
-
-    &::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(var(--primary-color), 0.05),
-        transparent
-      );
-      transition: height 0.5s ease;
-      z-index: 0;
-    }
-
-    &:hover::before {
-      height: 100%;
-    }
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
+  // Connecting line or decoration could go here
 
   .project-image-container {
-    position: relative;
-    border-radius: 12px;
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 10px 30px var(--shadow-color);
-    transition: all 0.5s ease;
-    transform-style: preserve-3d;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transform: perspective(1000px) rotateY(0deg);
+    transition: transform 0.5s ease;
+    background: var(--bg-dark);
 
     &:hover {
-      box-shadow: 0 15px 35px var(--shadow-color);
+      transform: perspective(1000px) rotateY(2deg) translateY(-5px);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
     }
-  }
 
-  .image-slider {
-    position: relative;
-    width: 100%;
-    height: 0;
-    padding-bottom: 56.25%; // 16:9 aspect ratio
-    overflow: hidden;
+    .image-slider {
+      position: relative;
+      padding-top: 56.25%; // 16:9 Aspect Ratio
 
-    .project-image {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top;
-      transition: transform 0.8s ease;
-      transform-style: preserve-3d;
-    }
-  }
+      .project-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
 
-  .slider-indicators {
-    position: absolute;
-    bottom: 15px;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    z-index: 10;
+      .slider-indicators {
+        position: absolute;
+        bottom: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 8px;
+        z-index: 2;
+        padding: 5px 10px;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 20px;
+        backdrop-filter: blur(4px);
 
-    .indicator-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background-color: rgba(255, 255, 255, 0.5);
-      transition: all 0.3s ease;
+        .indicator-dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.5);
+          cursor: pointer;
+          transition: all 0.3s ease;
 
-      &.active {
-        background-color: var(--primary-color);
-        transform: scale(1.2);
+          &.active {
+            background: var(--accent);
+            transform: scale(1.2);
+          }
+        }
       }
     }
   }
 
   .project-content {
-    padding: 1.5rem;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
-    z-index: 1;
-    transform-style: preserve-3d;
+    padding: 2rem;
 
     .project-title {
-      color: var(--text-color);
       font-size: 2rem;
-      font-weight: 600;
-      margin-bottom: 1.5rem;
-      position: relative;
-      display: inline-block;
-      transition: all 0.5s ease;
-      transform: translateZ(10px);
-
-      &::after {
-        content: "";
-        position: absolute;
-        bottom: -10px;
-        left: 0;
-        width: 50px;
-        height: 3px;
-        background: linear-gradient(
-          to right,
-          var(--primary-color),
-          var(--accent-color)
-        );
-        transition: all 0.5s ease;
-      }
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--text-main);
     }
 
     .project-description {
-      color: var(--text-light);
-      line-height: 1.8;
-      margin-bottom: 1.5rem;
-      transition: all 0.3s ease;
-      transform: translateZ(5px);
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 2rem;
     }
 
     .project-links {
-      margin-top: auto;
-      transform: translateZ(15px);
-
       .btn {
-        padding: 0.6rem 1.5rem;
-        border-radius: 30px;
-        font-weight: 500;
-        transition: all 0.5s ease;
-        box-shadow: 0 4px 6px var(--shadow-color);
-        position: relative;
-        overflow: hidden;
-
-        &::before {
-          content: "";
-          position: absolute;
-          top: 0;
-          left: -100%;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(
-            90deg,
-            transparent,
-            rgba(255, 255, 255, 0.2),
-            transparent
-          );
-          transition: all 0.6s ease;
-        }
+        @include glass-button;
+        border-color: var(--primary);
+        color: white;
+        background: rgba(99, 102, 241, 0.1);
 
         &:hover {
-          transform: translateY(-5px) scale(1.05);
-          box-shadow: 0 10px 15px var(--shadow-color);
-
-          &::before {
-            left: 100%;
-          }
+          background: var(--primary);
         }
-
-        &.btn-primary {
-          background: linear-gradient(
-            to right,
-            var(--primary-color),
-            var(--secondary-color)
-          );
-          border: none;
-          color: white;
-        }
-      }
-    }
-  }
-}
-
-@keyframes float-title {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-@keyframes shimmer {
-  100% {
-    transform: translateX(100%);
-  }
-}
-
-@keyframes shine {
-  from {
-    transform: rotate(30deg) translateX(-30%);
-  }
-  to {
-    transform: rotate(30deg) translateX(30%);
-  }
-}
-
-@media (max-width: 991.98px) {
-  .projects {
-    .project-item {
-      margin-bottom: 3rem;
-      padding: 1.5rem;
-
-      /* Hover effect is now defined globally */
-    }
-
-    .project-content {
-      padding: 1.5rem 0;
-
-      .project-title {
-        font-size: 1.8rem;
-        margin-top: 1rem;
-      }
-    }
-
-    .section-title {
-      font-size: 2rem;
-    }
-  }
-}
-
-/* Fix for mobile view zooming issue */
-@media (max-width: 767.98px) {
-  .projects {
-    .image-slider {
-      padding-bottom: 75%; /* Adjusted aspect ratio for mobile */
-    }
-
-    .project-image {
-      object-fit: contain !important; /* Ensure image fits within container */
-    }
-
-    .project-item {
-      padding: 1rem;
-    }
-
-    .project-content {
-      .project-title {
-        font-size: 1.5rem;
-      }
-
-      .project-description {
-        font-size: 0.95rem;
-      }
-    }
-
-    .slider-indicators {
-      bottom: 10px;
-
-      .indicator-dot {
-        width: 8px;
-        height: 8px;
       }
     }
   }

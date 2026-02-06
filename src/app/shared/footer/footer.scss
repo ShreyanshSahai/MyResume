@@ -1,36 +1,33 @@
-.footer {
-  background-color: var(--navbar-bg);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-top: 1px solid var(--border-color);
-  padding: 20px 0;
-  text-align: center;
-  margin-top: 30px;
-  box-shadow: 0 -5px 15px var(--shadow-color);
+@use "../../../mixins" as *;
 
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
-  }
+.footer {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 2rem 0;
 
   p {
     margin: 0;
-    color: var(--text-color);
+    color: var(--text-muted);
     font-size: 0.9rem;
-    font-weight: 400;
-    letter-spacing: 0.5px;
+
+    i {
+      color: #dd1b16; // Angular red
+      animation: pulse 2s infinite;
+    }
   }
 }
 
-/* Dark theme adjustments */
-:host-context(.dark-theme) {
-  .footer {
-    background-color: rgba(30, 30, 30, 0.8);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
 
-    p {
-      color: rgba(255, 255, 255, 0.8);
-    }
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
   }
 }

@@ -1,139 +1,121 @@
-.navbar {
-  padding: 1rem 0;
-  transition: all 0.3s ease;
-  background-color: var(--navbar-bg);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border-color);
+@use "../../../mixins" as *;
 
+.navbar {
+  padding: 1.5rem 0;
+  transition: all 0.4s ease;
+  background: transparent;
+
+  .container {
+    transition: all 0.4s ease;
+  }
+
+  /* Floating Glass Pill Design */
   &.scrolled {
-    padding: 0.5rem 0;
-    box-shadow: 0 5px 20px var(--shadow-color);
+    padding: 1rem 0;
+
+    .container {
+      @include glass-panel;
+      border-radius: 50px;
+      /* Pill shape */
+      padding: 0.5rem 2rem;
+      background: rgba(15, 23, 42, 0.7);
+      /* Slightly darker for contrast */
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      max-width: 95%;
+      /* Better fit on wide screens */
+    }
   }
 
   .navbar-brand {
-    font-weight: 600;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
     font-size: 1.5rem;
-    color: var(--navbar-text);
+    color: var(--text-main);
+    letter-spacing: -0.02em;
     position: relative;
-    overflow: hidden;
+    padding-left: 10px;
 
-    &::after {
-      content: "";
-      position: absolute;
-      bottom: -3px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--primary-color);
-      transition: width 0.3s ease;
-    }
+    /* Gradient Text Effect */
+    background: var(--gradient-main);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.3s ease;
 
-    &:hover::after {
-      width: 100%;
+    &:hover {
+      transform: scale(1.05);
     }
   }
 
   .nav-link {
+    color: var(--text-muted) !important;
     font-weight: 500;
-    padding: 0.5rem 1rem;
+    font-size: 0.95rem;
+    margin: 0 0.5rem;
+    padding: 0.5rem 1rem !important;
+    border-radius: 20px;
     transition: all 0.3s ease;
-    color: var(--navbar-text);
     position: relative;
 
-    &::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      width: 0;
-      height: 2px;
-      background: var(--primary-color);
-      transition: all 0.3s ease;
-      transform: translateX(-50%);
-    }
-
-    &:hover {
-      color: var(--primary-color);
-      transform: translateY(-2px);
-
-      &::after {
-        width: 80%;
-      }
-    }
-
+    &:hover,
     &.active {
-      color: var(--primary-color);
-
-      &::after {
-        width: 80%;
-      }
+      color: white !important;
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
-  }
 
-  .theme-toggle {
-    background: transparent;
-    border: none;
-    color: var(--navbar-text);
-    font-size: 1.2rem;
-    cursor: pointer;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-
-    &::before {
-      content: "";
+    /* Active state indicator dot */
+    &.active::after {
+      content: '';
       position: absolute;
-      inset: 0;
-      background: var(--primary-color);
-      opacity: 0;
-      transition: opacity 0.3s ease;
+      bottom: 5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 4px;
+      background: var(--accent);
       border-radius: 50%;
-      z-index: -1;
+    }
+  }
+
+  .navbar-toggler {
+    border: none;
+    padding: 0;
+    color: var(--text-main);
+
+    &:focus {
+      box-shadow: none;
     }
 
-    &:hover {
-      color: var(--btn-primary-text);
-      transform: rotate(15deg);
-
-      &::before {
-        opacity: 0.2;
-      }
-    }
-
-    i {
-      transition: transform 0.5s ease;
-    }
-
-    &:hover i {
-      transform: scale(1.2);
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
     }
   }
 }
 
-.navbar-toggler {
-  border: none;
-  background: transparent;
-  padding: 0.5rem;
+/* Mobile Adjustments */
+@media (max-width: 991px) {
+  .navbar {
+    &.scrolled .container {
+      border-radius: 20px;
+      /* Less rounded on mobile */
+      padding: 1rem;
+    }
 
-  &:focus {
-    box-shadow: none;
-  }
+    .navbar-collapse {
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      margin-top: 1rem;
+      border-radius: 16px;
+      padding: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
 
-  .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%230d6efd' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-  }
-}
-
-/* Dark mode adjustments */
-:host-context(.dark-theme) {
-  .navbar-toggler .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    .nav-link {
+      margin: 0.2rem 0;
+      text-align: center;
+    }
   }
 }

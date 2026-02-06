@@ -28,9 +28,7 @@
             <div>
               <h4>Email</h4>
               <p>
-                <a href="mailto:sahaishreyansh@gmail.com"
-                  >sahaishreyansh&#64;gmail.com</a
-                >
+                <a href="mailto:sahaishreyansh@gmail.com">sahaishreyansh&#64;gmail.com</a>
               </p>
             </div>
           </div>
@@ -42,18 +40,10 @@
             </div>
           </div>
           <div class="social-links mt-4">
-            <a
-              href="https://www.linkedin.com/in/shreyansh-sahai/"
-              class="social-icon"
-              aria-label="LinkedIn"
-            >
+            <a href="https://www.linkedin.com/in/shreyansh-sahai/" class="social-icon" aria-label="LinkedIn">
               <i class="bi bi-linkedin"></i>
             </a>
-            <a
-              href="https://github.com/ShreyanshSahai"
-              class="social-icon"
-              aria-label="GitHub"
-            >
+            <a href="https://github.com/ShreyanshSahai" class="social-icon" aria-label="GitHub">
               <i class="bi bi-github"></i>
             </a>
             <a href="https://leetcode.com/u/backspaced/" class="social-icon" aria-label="LeetCode">
@@ -71,16 +61,8 @@
               <div class="col-md-6 mb-3">
                 <div class="form-group">
                   <label for="name">Your Name</label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    class="form-control"
-                    placeholder="Enter your name"
-                    [(ngModel)]="formData.name"
-                    required
-                    #nameInput="ngModel"
-                  />
+                  <input type="text" id="name" name="name" class="form-control" placeholder="Enter your name"
+                    [(ngModel)]="formData.name" required #nameInput="ngModel" />
                   <div *ngIf="nameInput.invalid && contactForm.submitted && !isSubmitted" class="text-danger mt-1">
                     <small *ngIf="nameInput.errors?.['required']">Name is required</small>
                   </div>
@@ -89,17 +71,8 @@
               <div class="col-md-6 mb-3">
                 <div class="form-group">
                   <label for="email">Your Email</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    class="form-control"
-                    placeholder="Enter your email"
-                    [(ngModel)]="formData.email"
-                    required
-                    email
-                    #emailInput="ngModel"
-                  />
+                  <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email"
+                    [(ngModel)]="formData.email" required email #emailInput="ngModel" />
                   <div *ngIf="emailInput.invalid && contactForm.submitted && !isSubmitted" class="text-danger mt-1">
                     <small *ngIf="emailInput.errors?.['required']">Email is required</small>
                     <small *ngIf="emailInput.errors?.['email']">Please enter a valid email</small>
@@ -109,51 +82,33 @@
             </div>
             <div class="form-group mb-3">
               <label for="subject">Subject</label>
-              <input
-                type="text"
-                id="subject"
-                name="subject"
-                class="form-control"
-                placeholder="Enter subject"
-                [(ngModel)]="formData.subject"
-                required
-                #subjectInput="ngModel"
-              />
+              <input type="text" id="subject" name="subject" class="form-control" placeholder="Enter subject"
+                [(ngModel)]="formData.subject" required #subjectInput="ngModel" />
               <div *ngIf="subjectInput.invalid && contactForm.submitted && !isSubmitted" class="text-danger mt-1">
                 <small *ngIf="subjectInput.errors?.['required']">Subject is required</small>
               </div>
             </div>
             <div class="form-group mb-4">
               <label for="message">Message</label>
-              <textarea
-                id="message"
-                name="message"
-                class="form-control"
-                rows="5"
-                placeholder="Enter your message"
-                [(ngModel)]="formData.message"
-                required
-                #messageInput="ngModel"
-              ></textarea>
+              <textarea id="message" name="message" class="form-control" rows="5" placeholder="Enter your message"
+                [(ngModel)]="formData.message" required #messageInput="ngModel"></textarea>
               <div *ngIf="messageInput.invalid && contactForm.submitted && !isSubmitted" class="text-danger mt-1">
                 <small *ngIf="messageInput.errors?.['required']">Message is required</small>
               </div>
             </div>
-            <button 
-              type="submit" 
-              class="btn btn-primary send-btn" 
-              [disabled]="contactForm.invalid || isSubmitting"
-            >
-              <i class="bi" [ngClass]="isSubmitting ? 'bi-hourglass-split' : 'bi-send-fill'"></i>
-              <span class="ms-2">{{ isSubmitting ? 'Sending...' : 'Send Message' }}</span>
+            <button type="submit" class="btn send-btn" [disabled]="contactForm.invalid || isSubmitting">
+              <span class="d-flex align-items-center justify-content-center">
+                <i class="bi" [ngClass]="isSubmitting ? 'bi-hourglass-split' : 'bi-send-fill'"></i>
+                <span class="ms-2">{{ isSubmitting ? 'Sending Message...' : 'Send Message' }}</span>
+              </span>
             </button>
-            
+
             <!-- Success message -->
             <div *ngIf="isSubmitted" class="toast-notification success">
               <i class="bi bi-check-circle"></i>
               <div class="toast-content">Your message has been sent successfully! I'll get back to you soon.</div>
             </div>
-            
+
             <!-- Error message -->
             <div *ngIf="hasError" class="toast-notification error">
               <i class="bi bi-exclamation-triangle"></i>
