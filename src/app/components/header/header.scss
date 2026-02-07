@@ -25,6 +25,16 @@
     i {
       color: var(--accent);
     }
+
+    transition: transform 0.3s ease,
+    box-shadow 0.3s ease;
+  }
+
+  a:hover .glass-badge {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(99, 102, 241, 0.4);
+    border-color: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
   }
 
   /* Blobs for background */

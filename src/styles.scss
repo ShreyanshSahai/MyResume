@@ -39,6 +39,10 @@
   --ease-spring: cubic-bezier(0.43, 0.13, 0.23, 0.96);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Inter', sans-serif;
   background-color: var(--bg-darker);

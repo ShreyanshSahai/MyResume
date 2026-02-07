@@ -6,7 +6,7 @@
       <div class="timeline-item" *ngFor="let exp of experiences; let i = index"
         [attr.data-aos]="i % 2 === 0 ? 'fade-right' : 'fade-left'">
         <div class="timeline-dot"></div>
-        <div class="timeline-content">
+        <div class="timeline-content" [class.current-role]="exp.current">
           <div class="d-flex flex-column gap-2 w-100">
             <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
               <span class="duration-badge">{{ exp.duration }}</span>
