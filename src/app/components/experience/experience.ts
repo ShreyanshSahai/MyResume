@@ -19,6 +19,7 @@ interface ExperienceItem {
   logoPath: string;
   lightLogoPath?: string;
   achievements: string[];
+  current?: boolean;
 }
 
 @Component({
@@ -35,8 +36,9 @@ export class Experience implements AfterViewInit, OnInit, OnDestroy {
   experiences: ExperienceItem[] = [
     {
       company: 'Particle41',
-      position: 'Full Stack Developer',
+      position: 'Software Engineer',
       duration: 'June 2024 - Present',
+      current: true,
       logoPath: '/images/particle41.png',
       achievements: [
         'Led migration from a monolithic architecture to Clean Architecture, reducing code complexity by ~40% and improving long-term maintainability and cloud scalability.',
