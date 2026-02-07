@@ -39,12 +39,13 @@ export class Experience implements AfterViewInit, OnInit, OnDestroy {
       duration: 'June 2024 - Present',
       logoPath: '/images/particle41.png',
       achievements: [
-        'Upgraded legacy codebase from Repository Pattern to Clean Architecture, reducing technical debt and improving testability and scalability.',
-        'Reduced codebase size by 20% through refactoring, eliminating redundancies, and applying SOLID principles.',
-        'Collaborated with cross-functional teams to design and implement RESTful APIs using ASP.NET Core 8.0 with JWT authentication.',
-        'Integrated Twilio and SendGrid APIs for secure OTP-based login systems and email communication features.',
-        'Implemented asynchronous programming patterns to enhance API responsiveness and reduce latency by over 30%.',
-        'Actively contributed to architectural discussions and decisions, advocating for Domain-Driven Design (DDD) and Dependency Injection practices.',
+        'Led migration from a monolithic architecture to Clean Architecture, reducing code complexity by ~40% and improving long-term maintainability and cloud scalability.',
+        'Designed and implemented 15+ cloud-ready RESTful APIs using ASP.NET Core 8.0, improving API response time by ~30%.',
+        'Implemented secure authentication and authorization using AWS Cognito, JWT, and OAuth 2.0, supporting 1,000+ active users.',
+        'Integrated Google and Microsoft identity providers, enabling federated login and reducing manual authentication issues by ~50%.',
+        'Built cloud data pipelines to sync Google contacts, emails, and calendar events, processing 10,000+ records per day using OAuth tokens.',
+        'Integrated Twilio for OTP-based authentication (99% delivery success rate) and SendGrid for transactional emails (5,000+ emails/month).',
+        'Developed a NestJS-based MCP agent to aggregate data from 5+ third-party services, reducing data fetch latency by ~35%.',
       ],
     },
     {
@@ -76,7 +77,7 @@ export class Experience implements AfterViewInit, OnInit, OnDestroy {
   constructor(
     private elementRef: ElementRef,
     private themeService: ThemeService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.themeSubscription = this.themeService.theme$.subscribe((theme) => {
