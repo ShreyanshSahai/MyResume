@@ -34,9 +34,9 @@ export class Skills {
     {
       name: 'Frontend',
       skills: [
-        { name: 'Angular 18+', level: 90, icon: 'bi bi-file-type-html' },
+        { name: 'HTML5', level: 90, icon: 'bi bi-filetype-html' },
         { name: 'TypeScript', level: 90, icon: 'bi bi-file-code' },
-        { name: 'React', level: 75, icon: 'bi bi-atom' },
+        { name: 'React 18+', level: 75, icon: 'bi bi-filetype-jsx' },
         { name: 'Next.js', level: 70, icon: 'bi bi-lightning' },
         { name: 'SCSS/Tailwind', level: 85, icon: 'bi bi-palette' },
       ],
