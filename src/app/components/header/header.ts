@@ -24,7 +24,7 @@ export class Header implements AfterViewInit, OnInit {
       strings: [
         'Backend Focused',
         'AWS Cloud Architect',
-        'Angular Expert',
+        'React Developer',
         'API Designer'
       ],
       typeSpeed: 50,

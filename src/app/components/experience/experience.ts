@@ -48,6 +48,7 @@ export class Experience implements AfterViewInit, OnInit, OnDestroy {
         'Built cloud data pipelines to sync Google contacts, emails, and calendar events, processing 10,000+ records per day using OAuth tokens.',
         'Integrated Twilio for OTP-based authentication (99% delivery success rate) and SendGrid for transactional emails (5,000+ emails/month).',
         'Developed a NestJS-based MCP agent to aggregate data from 5+ third-party services, reducing data fetch latency by ~35%.',
+        'Collaborated on frontend development using React with JavaScript, enhancing UI functionality and responsiveness.',
       ],
     },
     {
