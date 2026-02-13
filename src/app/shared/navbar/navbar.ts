@@ -15,7 +15,7 @@ export class Navbar implements OnInit, OnDestroy {
   isMenuOpen = false;
   private themeSubscription: Subscription | null = null;
 
-  constructor(private themeService: ThemeService) {}
+  constructor(private themeService: ThemeService) { }
 
   ngOnInit() {
     this.themeSubscription = this.themeService.theme$.subscribe(
@@ -37,11 +37,17 @@ export class Navbar implements OnInit, OnDestroy {
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
+    if (this.isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
   }
 
   closeMenu() {
     if (this.isMenuOpen) {
       this.isMenuOpen = false;
+      document.body.style.overflow = ''; // Restore scrolling
       // Find the navbar collapse element and remove the show class
       const navbarCollapse = document.getElementById('navbarNav');
       if (navbarCollapse && navbarCollapse.classList.contains('show')) {
@@ -57,22 +63,22 @@ export class Navbar implements OnInit, OnDestroy {
     // Get references to the navbar elements
     const navbarCollapse = document.getElementById('navbarNav');
     const navbarToggler = document.querySelector('.navbar-toggler');
-    
+
     // Check if the menu is open and the click is outside the menu and toggler
-    if (navbarCollapse && navbarToggler && 
-        navbarCollapse.classList.contains('show') && 
-        !navbarCollapse.contains(event.target as Node) && 
-        !navbarToggler.contains(event.target as Node)) {
-      
+    if (navbarCollapse && navbarToggler &&
+      navbarCollapse.classList.contains('show') &&
+      !navbarCollapse.contains(event.target as Node) &&
+      !navbarToggler.contains(event.target as Node)) {
+
       // Prevent the default action if the click target is a link or button
       const target = event.target as HTMLElement;
       const clickableElement = target.closest('a, button, input[type="submit"]');
-      
+
       if (clickableElement) {
         event.preventDefault();
         event.stopPropagation();
       }
-      
+
       this.closeMenu();
     }
   }
